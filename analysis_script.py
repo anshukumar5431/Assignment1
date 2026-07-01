@@ -43,7 +43,7 @@ order = ['Extreme Fear', 'Fear', 'Neutral', 'Greed', 'Extreme Greed']
 closes = df[df['is_close']].copy()
 print("closing trades (nonzero pnl):", len(closes), "out of", len(df))
 
-# --- win rate + avg pnl per trade, 5-class ---
+# win rate + avg pnl per trade, 5-class 
 g = closes.groupby('classification').agg(
     trades=('Closed PnL', 'count'),
     win_rate=('win', 'mean'),
@@ -89,7 +89,7 @@ top_coins = df['Coin'].value_counts().head(8).index
 coin_g = closes[closes['Coin'].isin(top_coins)].groupby(['Coin', 'sentiment_bucket'])['Closed PnL'].sum().unstack(fill_value=0)
 print(coin_g)
 
-# ===================== CHARTS =====================
+# CHARTS 
 plt.rcParams['font.size'] = 11
 COLORS = {'Extreme Fear': '#8B0000', 'Fear': '#E06666', 'Neutral': '#B7B7B7', 'Greed': '#93C47D', 'Extreme Greed': '#38761D'}
 
